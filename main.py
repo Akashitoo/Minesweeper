@@ -27,7 +27,6 @@ class Grille:
         if x != 0 and x != 15 and y != 0 and y != 15:
             for i in range(y - 1, y + 2):
                 for j in range(x - 1, x + 2):
-                    print([x,y],[i,j])
                     if self.contenue[i][j].mine:
                         self.contenue[y][x].mine_voisine += 1
         if x == 0 and y == 0 :
