@@ -6,10 +6,8 @@ from random import*
 class Case:
 
     def __init__(self,x,y) :
-        """
         self.x = x
         self.y = y
-        """
         self.mine = False
         self.mine_voisine = 0
         self.decouverte =False
@@ -29,6 +27,7 @@ class Grille:
         if x != 0 and x != 15 and y != 0 and y != 15:
             for i in range(y - 1, y + 2):
                 for j in range(x - 1, x + 2):
+                    print([x,y],[i,j])
                     if self.contenue[i][j].mine:
                         self.contenue[y][x].mine_voisine += 1
         if x == 0 and y == 0 :
@@ -72,6 +71,7 @@ class Grille:
                 for j in range(x, x+2):
                     if self.contenue[i][j].mine:
                         self.contenue[y][x].mine_voisine += 1
+
 
     def remplir(self) :
 
@@ -122,6 +122,36 @@ def propagation(x,y):
                 for j in range(15,13,-1):
                     if not demineur.contenue[i][j].decouverte:
                         propagation(j,i)
+    if x == 0 and y == 15:
+        if not demineur.contenue[y][x].mine and demineur.contenue[y][x].mine_voisine == 0 :
+            for i in range(15, 13, -1):
+                for j in range(x, x + 2):
+                    if not demineur.contenue[i][j].decouverte:
+                        propagation(j,i)
+    if x != 0 and x != 15 and y == 0:
+        if not demineur.contenue[y][x].mine and demineur.contenue[y][x].mine_voisine == 0:
+            for i in range(y, y + 2):
+                for j in range(x - 1, x + 2):
+                    if not demineur.contenue[i][j].decouverte:
+                        propagation(j,i)
+    if x == 15 and y != 0 and y != 15:
+        if not demineur.contenue[y][x].mine and demineur.contenue[y][x].mine_voisine == 0:
+            for i in range(y - 1, y + 2):
+                for j in range(15, 13, -1):
+                    if not demineur.contenue[i][j].decouverte:
+                        propagation(j,i)
+    if x != 0 and x != 15 and y == 15:
+        if not demineur.contenue[y][x].mine and demineur.contenue[y][x].mine_voisine == 0:
+            for i in range(y, y - 2, -1):
+                for j in range(x - 1, x + 2):
+                    if not demineur.contenue[i][j].decouverte:
+                        propagation(j,i)
+    if x == 0 and y != 0 and y != 15:
+        if not demineur.contenue[y][x].mine and demineur.contenue[y][x].mine_voisine == 0:
+            for i in range(y - 1, y + 2):
+                for j in range(x, x + 2):
+                    if not demineur.contenue[i][j].decouverte:
+                        propagation(j, i)
 
 def leftClick(event):
 
@@ -169,6 +199,8 @@ def rightClick(event):
         else :
             demineur.nb_a_deminer += 1
 
+    print(demineur.nb_a_deminer)
+
     if demineur.nb_a_deminer == 0:
         demineur.win = True
         for ligne_case in demineur.contenue:
@@ -185,12 +217,8 @@ def affiche():
 
     for y in range(16):
         for x in range(16):
-            """
             a = demineur.contenue[y][x].x
             b = demineur.contenue[y][x].y
-            
-            """
-   
             voisin = demineur.contenue[y][x].mine_voisine
 
             if not demineur.contenue[y][x].decouverte and not demineur.contenue[y][x].deminer :
@@ -213,15 +241,11 @@ def affiche():
 
                     notBomb = canvas.create_image(x*40 , y*40 , image = imageNotBomb  , anchor ='nw')
 
-
-
-
-
 demineur = Grille()
 demineur.remplir()
 window = Tk()
 window.geometry("650x650")
-window.title("Démineur")
+window.title('𝑫𝒆𝒎𝒊𝒏𝒆𝒖𝒓')
 window.iconbitmap('assets/icon.ico')
 canvas = Canvas(window, width=640, height=640)
 canvas.pack()
