@@ -6,8 +6,10 @@ from random import*
 class Case:
 
     def __init__(self,x,y) :
+        """
         self.x = x
         self.y = y
+        """
         self.mine = False
         self.mine_voisine = 0
         self.decouverte =False
@@ -167,8 +169,6 @@ def rightClick(event):
         else :
             demineur.nb_a_deminer += 1
 
-    print(demineur.nb_a_deminer)
-
     if demineur.nb_a_deminer == 0:
         demineur.win = True
         for ligne_case in demineur.contenue:
@@ -185,8 +185,12 @@ def affiche():
 
     for y in range(16):
         for x in range(16):
+            """
             a = demineur.contenue[y][x].x
             b = demineur.contenue[y][x].y
+            
+            """
+   
             voisin = demineur.contenue[y][x].mine_voisine
 
             if not demineur.contenue[y][x].decouverte and not demineur.contenue[y][x].deminer :
@@ -217,6 +221,8 @@ demineur = Grille()
 demineur.remplir()
 window = Tk()
 window.geometry("650x650")
+window.title("Démineur")
+window.iconbitmap('assets/icon.ico')
 canvas = Canvas(window, width=640, height=640)
 canvas.pack()
 pixelVirtual = PhotoImage(width=1,height=1)
