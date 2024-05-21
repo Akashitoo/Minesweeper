@@ -4,8 +4,8 @@ Jeu du Démineur codé en Python.
 
 ## Usage
 
-Nécessite les bibliothèques pygame, pyglet et tkinter.
+Nécessite tkinter.
 
 Lancer le jeu avec la commande :
 
-```python3 .py```
+```python3 main.py```
