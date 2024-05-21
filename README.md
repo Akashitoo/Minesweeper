@@ -1,5 +1,3 @@
-# D-mineur-
-Jeu du Démineur en Python 
+# Démineur
 
-
-J'ai pris 1 mois à le faire mdr 
+Jeu du Démineur codé en Python.
