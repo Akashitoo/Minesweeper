@@ -27,7 +27,6 @@ class Grille:
         if x != 0 and x != 15 and y != 0 and y != 15:
             for i in range(y - 1, y + 2):
                 for j in range(x - 1, x + 2):
-                    print([x,y],[i,j])
                     if self.contenue[i][j].mine:
                         self.contenue[y][x].mine_voisine += 1
         if x == 0 and y == 0 :
@@ -198,7 +197,7 @@ def rightClick(event):
     else:
         demineur.contenue[y][x].deminer = True
         if demineur.contenue[y][x] in demineur.liste_mine:
-            demineur.nb_a_deminer -= i1
+            demineur.nb_a_deminer -= 1
     if demineur.nb_a_deminer == 0:
         demineur.win = True
         for ligne_case in demineur.contenue:
@@ -247,7 +246,6 @@ demineur.remplir()
 window = Tk()
 window.geometry("650x650")
 window.title('𝑫𝒆𝒎𝒊𝒏𝒆𝒖𝒓')
-window.iconbitmap('assets/icon.ico')
 canvas = Canvas(window, width=640, height=640)
 canvas.pack()
 pixelVirtual = PhotoImage(width=1,height=1)
