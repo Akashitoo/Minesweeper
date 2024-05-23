@@ -89,7 +89,7 @@ class Grille:
                 self.contenue[a][b].mine = True
                 mine += 1
                 self.liste_mine.append(self.contenue[a][b])
-
+        self.nb_a_deminer = 40
         #Compte les mines voisines
         for y in range(16):
             for x in range(16):
@@ -195,15 +195,10 @@ def rightClick(event):
         demineur.contenue[y][x].deminer = False
         if demineur.contenue[y][x] in demineur.liste_mine:
             demineur.nb_a_deminer += 1
-        else:
-            demineur.nb_a_deminer -= 1
     else:
         demineur.contenue[y][x].deminer = True
         if demineur.contenue[y][x] in demineur.liste_mine:
-            demineur.nb_a_deminer -= 1
-        else :
-            demineur.nb_a_deminer += 1
-
+            demineur.nb_a_deminer -= i1
     if demineur.nb_a_deminer == 0:
         demineur.win = True
         for ligne_case in demineur.contenue:
